@@ -5,7 +5,6 @@
       v-bind:key="year"
       v-bind:year="year"
       v-bind:tracks="tracks" />
-    <PieChartComponent v-bind:timePeriod="timePeriod"/>
   </div>
 </template>
 
@@ -13,7 +12,6 @@
 import SpotifyApiService from '@/services/SpotifyApiService';
 import SpotifySessionHelper from '@/helpers/SpotifySessionHelper';
 import TopTracksGroupComponent from '@/components/TopTracksGroupComponent.vue';
-import PieChartComponent from '@/components/PieChartComponent.vue';
 
 export default {
   name: 'TopTrackListComponent',
@@ -30,7 +28,6 @@ export default {
   },
   components: {
     TopTracksGroupComponent,
-    PieChartComponent,
   },
   methods: {
     groupByYear(result, currentValue) {

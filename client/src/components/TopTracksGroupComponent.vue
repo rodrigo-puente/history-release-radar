@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="tracks">
-      <div class="track" v-for="(track, idx) in tracks" v-bind:key="idx">
+      <div class="track" v-for="(track, idx) in tracksData" v-bind:key="idx">
         <h2>{{ track.artists.map( e=> e.name).join("& ") }}</h2>
         <p>{{ track.name }}</p>
       </div>
@@ -31,6 +31,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      tracksData: [],
+    };
+  },
   computed: {
     timeAgoText() {
       const timeAgoNum = moment().year() - parseInt(this.year, 10);
@@ -50,7 +55,7 @@ export default {
   },
   mounted() {
     stickybits('.year div', { stickyBitStickyOffset: 30 });
-    this.tracks = this.tracks.sort(this.sortTracksAscending);
+    this.tracksData = [...this.tracks].sort(this.sortTracksAscending);
   },
 };
 </script>
