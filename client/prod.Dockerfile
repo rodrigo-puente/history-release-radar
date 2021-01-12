@@ -10,7 +10,8 @@ RUN npm run build --prod
 WORKDIR /usr/share/nginx/html
 FROM nginx:1.16.0-alpine
 COPY --from=build /app/dist .
-COPY client/entrypoint.sh /entrypoint.sh
+COPY client/entrypoint.sh .
+RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
