@@ -9,7 +9,7 @@ RUN npm run build --prod
 # production environment
 FROM nginx:1.16.0-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY client/entrypoint.sh ./entrypoint.sh
+COPY client/entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
