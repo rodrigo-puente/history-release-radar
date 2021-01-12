@@ -37,6 +37,9 @@ jobs:
           REDIRECT_URL=${{ secrets.REDIRECT_URL }}
           SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}
+    -
+      name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
 
   build-and-deploy-client:
     runs-on: ubuntu-latest
@@ -63,3 +66,6 @@ jobs:
         tags: ro-puente/release-radar-client:latest
         build-args: |
           VUE_APP_API_URL=${{ secrets.VUE_APP_API_URL }}
+    -
+      name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
