@@ -9,7 +9,6 @@ server/build
 
 # local env files
 .env
-.env.*
 
 # Log files
 npm-debug.log*
