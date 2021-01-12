@@ -1,7 +1,6 @@
 FROM node:lts-alpine as build
 WORKDIR /app
 COPY client/package*.json .
-COPY client/.env.production .
 RUN npm install
 COPY client .
 RUN npm run build --prod
@@ -10,8 +9,4 @@ RUN npm run build --prod
 WORKDIR /usr/share/nginx/html
 FROM nginx:1.16.0-alpine
 COPY --from=build /app/dist .
-COPY client/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
