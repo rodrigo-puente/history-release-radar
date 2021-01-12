@@ -31,7 +31,7 @@ jobs:
         context: .
         file: ./server/prod.Dockerfile
         push: true
-        tags: ro-puente/release-radar-server:latest
+        tags: ropuente/release-radar-server:latest
         build-args: |
           PORT=${{ secrets.PORT }}
           REDIRECT_URL=${{ secrets.REDIRECT_URL }}
@@ -63,7 +63,7 @@ jobs:
         context: .
         file: ./client/prod.Dockerfile
         push: true
-        tags: ro-puente/release-radar-client:latest
+        tags: ropuente/release-radar-client:latest
         build-args: |
           VUE_APP_API_URL=${{ secrets.VUE_APP_API_URL }}
     -
