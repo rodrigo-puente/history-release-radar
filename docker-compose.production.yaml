@@ -1,24 +1,23 @@
 version: "3.7"
 services:
-  music-stuff-prod-server:
+  server:
     container_name: music-stuff-prod-server
+    image: index.docker.io/ropuente/release-radar-server:latest
     build:
         context: ./server
         dockerfile: prod.Dockerfile
     ports:
       - "3000:3000"
     command: "npm run serve"
-    environment:
-      - REDIRECT_URL="${REDIRECT_URL}"
-      - SPOTIFY_CLIENT_ID="${SPOTIFY_CLIENT_SECRET}"
-      - SPOTIFY_CLIENT_SECRET="${SPOTIFY_CLIENT_SECRET}"
-      - PORT="${PORT}"
-  music-stuff-prod-client:
+    env_file:
+      - .env
+  client:
     container_name: music-stuff-prod-client
+    image: index.docker.io/ropuente/release-radar-client:latest
     build:
       context: ./client
       dockerfile: prod.Dockerfile
-    environment: :
-      - VUE_APP_API_URL="${VUE_APP_API_URL}"
+    env_file:
+      - .env
     ports:
       - '8080:80'
