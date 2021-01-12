@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  music-stuff-prod-server:
+    container_name: music-stuff-prod-server
+    build:
+        context: ./server
+        dockerfile: prod.Dockerfile
+    ports:
+      - "3000:3000"
+    command: "npm run serve"
+    environment:
+      - REDIRECT_URL="${REDIRECT_URL}"
+      - SPOTIFY_CLIENT_ID="${SPOTIFY_CLIENT_SECRET}"
+      - SPOTIFY_CLIENT_SECRET="${SPOTIFY_CLIENT_SECRET}"
+      - PORT="${PORT}"
+  music-stuff-prod-client:
+    container_name: music-stuff-prod-client
+    build:
+      context: ./client
+      dockerfile: prod.Dockerfile
+    environment: :
+      - VUE_APP_API_URL="${VUE_APP_API_URL}"
+    ports:
+      - '8080:80'

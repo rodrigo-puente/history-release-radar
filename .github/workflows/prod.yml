@@ -32,11 +32,6 @@ jobs:
         file: ./server/prod.Dockerfile
         push: true
         tags: ropuente/release-radar-server:latest
-        build-args: |
-          PORT=${{ secrets.PORT }}
-          REDIRECT_URL=${{ secrets.REDIRECT_URL }}
-          SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}
     -
       name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
@@ -64,8 +59,6 @@ jobs:
         file: ./client/prod.Dockerfile
         push: true
         tags: ropuente/release-radar-client:latest
-        build-args: |
-          VUE_APP_API_URL=${{ secrets.VUE_APP_API_URL }}
     -
       name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
