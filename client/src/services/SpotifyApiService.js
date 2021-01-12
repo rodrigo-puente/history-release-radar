@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_URL } from '@/app.config';
 
-axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+axios.defaults.baseURL = API_URL;
 
 export default {
   async getLoginUrl() {
