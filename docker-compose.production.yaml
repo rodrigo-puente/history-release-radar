@@ -16,5 +16,7 @@ services:
   client:
     container_name: music-stuff-prod-client
     image: index.docker.io/ropuente/release-radar-client:latest
+    environment: 
+      - VUE_APP_API_URL="${VUE_APP_API_URL}"
     ports:
       - '8080:80'
