@@ -1,5 +1,8 @@
 FROM node:lts-alpine
+
 WORKDIR /app
-COPY package*.json .
+COPY ./server/package*.json .
 RUN npm install
-COPY . .
+COPY ./server/ .
+CMD ["npm", "run serve"]
+]
