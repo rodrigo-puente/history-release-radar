@@ -5,7 +5,7 @@
         <h2>
           {{ track }} by {{ artist }}
         </h2>
-        <p>was released in {{ year }}, {{ timeAgoText }}.</p>
+        <p>was released in {{ year }},<span class="spacer"></span> {{ timeAgoText }}.</p>
         <p class="url">https://release-radar.rodrigopuente.com</p>
       </div>
       <div class="links">
@@ -55,8 +55,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   height: 100vh;
+  padding: 0 5%;
 }
 
 .content {
@@ -108,6 +109,19 @@ export default {
     letter-spacing: 0.1rem;
     color: #1f1f1f;
     text-decoration: underline;
+  }
+}
+
+@media (max-width: 600px) {
+  .links {
+    a {
+      display: block;
+      padding-bottom: 30px;
+    }
+  }
+
+  .spacer {
+    display: block;
   }
 }
 </style>
