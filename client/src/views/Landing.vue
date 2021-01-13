@@ -49,4 +49,11 @@ h1, h2 {
   letter-spacing: 0.1rem;
   color: #1f1f1f;
 }
+
+@media (max-width: 770px) {
+  h1 {
+    line-height: 5rem;
+    margin-bottom: 30px;
+  }
+}
 </style>
