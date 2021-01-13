@@ -1,6 +1,8 @@
 import axios from 'axios';
+import cachios from 'cachios';
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+const cachiosInstance = cachios.create(axios);
 
 export default {
   async getLoginUrl() {
@@ -12,7 +14,7 @@ export default {
     return response.data;
   },
   async getTopTracks(token, timePeriod) {
-    const response = await axios.post('/top-tracks', { token, timePeriod });
+    const response = await cachiosInstance.post('/top-tracks', { token, timePeriod }, { ttl: 3600 });
     return response.data;
   },
 };

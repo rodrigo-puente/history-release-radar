@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div>
-      <div class="content">
+      <div class="content" id="share">
         <h2>
           {{ track }} by {{ artist }}
         </h2>
@@ -12,7 +12,7 @@
         <router-link :to="{ name: 'Stats', params: { timePeriod: back } }">
             GO BACK
         </router-link>
-        <a href="#">DOWNLOAD TO SHARE</a>
+        <a v-on:click="downloadImage">DOWNLOAD TO SHARE</a>
       </div>
     </div>
   </div>
@@ -20,6 +20,8 @@
 
 <script>
 import MiscHelper from '@/helpers/MiscHelper';
+import { toBlob } from 'html-to-image';
+import { saveAs } from 'file-saver';
 
 export default {
   name: 'Share',
@@ -29,7 +31,7 @@ export default {
       artist: '',
       year: '',
       timeAgoText: '',
-      back: '',
+      back: 'long_term',
     };
   },
   mounted() {
@@ -38,6 +40,12 @@ export default {
     this.back = this.$route.params.back;
     this.year = this.$route.params.year;
     this.timeAgoText = MiscHelper.timeAgoText(this.year).toLowerCase();
+  },
+  methods: {
+    downloadImage() {
+      toBlob(document.getElementById('share'))
+        .then((blob) => saveAs(blob, 'release-radar.png'));
+    },
   },
 };
 </script>
@@ -52,7 +60,6 @@ export default {
 }
 
 .content {
-  margin: 15px;
   padding: 30px;
   background: #1f1f1f;
 
@@ -63,6 +70,7 @@ export default {
     line-height: 2.2rem;
     letter-spacing: .2rem;
     color: #c9a3be;
+    text-align: center;
   }
 
   p {
@@ -72,6 +80,8 @@ export default {
     color: #f1f1f1;
     margin: 10px 0 0 0;
     letter-spacing: 0.1rem;
+    text-align: center;
+
   }
 
   p.url {
@@ -97,6 +107,7 @@ export default {
     font-family: 'Roboto', sans-serif;
     letter-spacing: 0.1rem;
     color: #1f1f1f;
+    text-decoration: underline;
   }
 }
 </style>
