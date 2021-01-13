@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L1QE3DWRB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0L1QE3DWRB');
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📀</text></svg>">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="description" content="Find out the release date of your favorite Spotify songs.">
     <!-- Facebook metadata -->
-    <meta property="og:title" content="{{title}}">
-    <meta property="og:description" content="{{description}}">
-    <meta property="og:image" content="{{image}}">
-    <meta property="og:url" content="{{url}}">
+    <meta property="og:title" content="Release Radar">
+    <meta property="og:description" content="Find out the release date of your favorite Spotify songs.">
+    <meta property="og:image" content="<%= BASE_URL %>share_fb.png">
+    <meta property="og:url" content="<%= BASE_URL %>">
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:site_name" content="{{site_name}}">
-    <meta name="twitter:image:alt" content="{{alt_image}}">
+    <meta property="og:site_name" content="Release Radar">
+    <meta name="twitter:image:alt" content="Release Radar">
   </head>
   <body>
     <noscript>
