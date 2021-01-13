@@ -1,12 +1,14 @@
 <template>
   <div class="wrapper">
     <div>
-      <div class="content" id="share">
-        <h2>
-          {{ track }} by {{ artist }}
-        </h2>
-        <p>was released in {{ year }},<span class="spacer"></span> {{ timeAgoText }}.</p>
-        <p class="url">https://release-radar.rodrigopuente.com</p>
+      <div class="wrap" id="share">
+        <div class="content">
+          <h2>
+            {{ track }} by {{ artist }}
+          </h2>
+          <p>was released in {{ year }},<span class="spacer"></span> {{ timeAgoText }}.</p>
+          <p class="url">https://release-radar.rodrigopuente.com</p>
+        </div>
       </div>
       <div class="links">
         <router-link :to="{ name: 'Stats', params: { timePeriod: back } }">
@@ -43,8 +45,12 @@ export default {
   },
   methods: {
     downloadImage() {
-      toBlob(document.getElementById('share'))
-        .then((blob) => saveAs(blob, 'release-radar.png'));
+      toBlob(document.getElementById('share'), {
+        pixelRatio: 1,
+        style: {
+          outline: 'solid 10px #FEFB52',
+        },
+      }).then((blob) => saveAs(blob, 'release-radar.png'));
     },
   },
 };
@@ -58,6 +64,11 @@ export default {
   width: 90%;
   height: 100vh;
   padding: 0 5%;
+}
+
+.wrap {
+  padding: 15px;
+  background: #FEFB52;
 }
 
 .content {
