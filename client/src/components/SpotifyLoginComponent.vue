@@ -9,9 +9,11 @@ import SpotifyApiService from '@/services/SpotifyApiService';
 
 export default {
   name: 'SpotifyLoginComponent',
-  data: () => ({
-    url: '',
-  }),
+  data() {
+    return {
+      url: '',
+    };
+  },
   methods: {
     async getLoginUrl() {
       try {

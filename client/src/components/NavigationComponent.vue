@@ -6,17 +6,17 @@
     <div id="menu">
       <ul>
         <li>
-          <router-link :to="{ name: 'Stats', params: { timePeriod: 'long_term'} }">
+          <router-link :to="{ name: 'Stats', params: { timePeriod: 'long_term' } }">
             ALL-TIMER
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Stats', params: { timePeriod: 'medium_term'} }">
+          <router-link :to="{ name: 'Stats', params: { timePeriod: 'medium_term' } }">
             LAST 6 MONTHS
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'Stats', params: { timePeriod: 'short_term'} }">
+          <router-link :to="{ name: 'Stats', params: { timePeriod: 'short_term' } }">
             LAST 4 WEEKS
           </router-link>
         </li>

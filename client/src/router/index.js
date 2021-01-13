@@ -19,6 +19,11 @@ const routes = [
     name: 'Stats',
     component: () => import(/* webpackChunkName: "stats" */ '../views/Stats.vue'),
   },
+  {
+    path: '/share/:year/:track/:artist/:back',
+    name: 'Share',
+    component: () => import(/* webpackChunkName: "stats" */ '../views/Share.vue'),
+  },
 ];
 
 const router = new VueRouter({

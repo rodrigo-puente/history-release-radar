@@ -7,20 +7,27 @@
       </div>
     </div>
     <div class="tracks">
-      <div class="track" v-for="(track, idx) in tracksData" v-bind:key="idx">
-        <h2>{{ track.artists.map( e=> e.name).join("& ") }}</h2>
-        <p>{{ track.name }}</p>
-      </div>
+      <top-track-component
+        v-for="(track, idx) in tracksData"
+        v-bind:key="idx"
+        v-bind:track="track.name"
+        v-bind:artist="track.artists.map( e => e.name ).join('& ')"
+        v-bind:year="year"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import moment from 'moment';
 import stickybits from 'stickybits';
+import TopTrackComponent from '@/components/TopTrackComponent.vue';
+import MiscHelper from '@/helpers/MiscHelper';
 
 export default {
   name: 'TopTracksGroupComponent',
+  components: {
+    TopTrackComponent,
+  },
   props: {
     tracks: {
       type: Array,
@@ -34,15 +41,8 @@ export default {
   data() {
     return {
       tracksData: [],
+      timeAgoText: '',
     };
-  },
-  computed: {
-    timeAgoText() {
-      const timeAgoNum = moment().year() - parseInt(this.year, 10);
-      if (timeAgoNum === 0) return 'THIS YEAR';
-      if (timeAgoNum === 1) return 'A YEAR AGO';
-      return `${timeAgoNum} YEARS AGO`;
-    },
   },
   methods: {
     sortTracksAscending(a, b) {
@@ -56,6 +56,7 @@ export default {
   mounted() {
     stickybits('.year div', { stickyBitStickyOffset: 30 });
     this.tracksData = [...this.tracks].sort(this.sortTracksAscending);
+    this.timeAgoText = MiscHelper.timeAgoText(this.year);
   },
 };
 </script>
@@ -98,6 +99,7 @@ export default {
   display: inline-block;
   margin: 15px;
   padding: 30px;
+  position: relative;
 
   h2 {
     color: #C9A3BE;
@@ -116,6 +118,19 @@ export default {
     color: #f1f1f1;
     margin: 10px 0 0 0;
     letter-spacing: 0.1rem;
+  }
+
+  .share {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    svg {
+      width: 15px;
+      height: 15px;
+      path {
+        fill: #C9A3BE
+      }
+    }
   }
 }
 

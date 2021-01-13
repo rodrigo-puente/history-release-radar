@@ -7,11 +7,13 @@ services:
         dockerfile: dev.Dockerfile
     ports:
       - "3000:3000"
+    env_file:
+      - .env
     command: "npm start"
     environment:
       - REDIRECT_URL=http://localhost:8080/auth/callback
-      - SPOTIFY_CLIENT_ID="${SPOTIFY_CLIENT_SECRET}"
-      - SPOTIFY_CLIENT_SECRET="${SPOTIFY_CLIENT_SECRET}"
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
       - PORT=3000
     volumes:
       - './server:/app'
